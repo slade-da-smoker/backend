@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 const fileUploadSchema = Joi.object({
     // For file uploads, we'll validate the file properties
-    file: Joi.object({
+    pdf: Joi.object({
         fieldname: Joi.string().valid('pdf').required(),
         originalname: Joi.string().required(),
         encoding: Joi.string().required(),
