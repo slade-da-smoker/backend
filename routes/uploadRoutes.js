@@ -5,8 +5,9 @@ const PDFFile = require('../models/PDFFile');
 const validateRequest = require('../middleware/validateRequest');
 const { fileUploadSchema, getPDFsSchema } = require('../validations/uploadValidation');
 
-// POST /api/upload/image
-router.post('/image', uploadPDF.single('pdf'), validateRequest(fileUploadSchema), uploadPDFFile);
+// POST /api/upload/pdf
+// The form field name for the file must be 'pdf'
+router.post('/pdf', uploadPDF.single('pdf'), validateRequest(fileUploadSchema), uploadPDFFile);
 
 // GET /api/upload/pdfs
 router.get('/pdfs', validateRequest(getPDFsSchema), async (req, res) => {
