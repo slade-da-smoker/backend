@@ -1,6 +1,9 @@
 const validateRequest = (schema) => {
     return (req, res, next) => {
-        const { error } = schema.validate(req.body);
+        // For file uploads, validate req.file instead of req.body
+        const dataToValidate = req.file ? { pdf: req.file } : req.body;
+        
+        const { error } = schema.validate(dataToValidate);
         if (error) {
             return res.status(400).json({
                 success: false,
