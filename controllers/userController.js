@@ -3,7 +3,7 @@ const User = require('../models/User'); // Make sure the correct path
 // Fetch user by email
 exports.getUserByEmail = async (req, res) => {
   try {
-    const user = await User.findOne({email: req.params.email});
+    const user = await User.findOne({email: req.params.email}).select('name email uniqueId uploadedPDFs');
 
     if (!user) return res.status(404).json({ message: 'User not found' });
 
@@ -11,6 +11,7 @@ exports.getUserByEmail = async (req, res) => {
       name: user.name,
       email: user.email,
       uniqueId: user.uniqueId,
+      uploadedPDFs: user. uploadedPDFs
     });
   } catch (error) {
     console.error(error);

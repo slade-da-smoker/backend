@@ -13,7 +13,13 @@ const userSchema = new mongoose.Schema({
   idCardPDF: String,
   examCardPDF: String,
   idCardPDF: String,
-  uploadedPDFs: [String],
+  uploadedPDFs: [
+    {
+      filename: String,
+      fileUrl: String, // or local file path
+      uploadedAt: { type: Date, default: Date.now },
+    }
+  ],
 });
 
 module.exports = mongoose.model('User', userSchema);
